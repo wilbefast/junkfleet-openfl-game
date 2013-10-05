@@ -1,6 +1,9 @@
 package hacksaw;
 
+import flash.ui.Keyboard;
 import flash.events.KeyboardEvent;
+import flash.events.Event;
+import flash.Lib;
 
 class InputManager
 {
@@ -17,8 +20,9 @@ class InputManager
 		codesByName = new Map<String, Int>();
 		
 		// register events
-		flash.Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, function(event : KeyboardEvent) return onKey(true, event));
-		flash.Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, function(event : KeyboardEvent) return onKey(true, event));
+		Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, function(event : KeyboardEvent) return onKey(true, event));
+		Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, function(event : KeyboardEvent) return onKey(false, event));
+		Lib.current.stage.addEventListener(Event.ENTER_FRAME, onFrameEnter);
 	}
 
 	private static var instance : InputManager;
@@ -50,7 +54,7 @@ class InputManager
 	private var codesByName : Map<String, Int>;
 	
 	// ---------------------------------------------------------------------------
-	// INPUT EVENTS
+	// EVENTS
 	// ---------------------------------------------------------------------------
 	
 	private function onKey(pressed : Bool, event : KeyboardEvent)
@@ -59,6 +63,13 @@ class InputManager
 		if (state != null)
 			state.pressed = pressed;
 	}
+	
+	private function onFrameEnter(event : Event)
+	{
+		for (state in statesByCode)
+			state.onFrameEnter(event);
+	}
+	
 	
 	// ---------------------------------------------------------------------------
 	// REGISTER AND READ INPUT

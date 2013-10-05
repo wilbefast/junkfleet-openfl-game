@@ -17,12 +17,15 @@ class Main extends Sprite
 		// Start Hacksaw
 		// ------------------------------------------------------------------------
 
+		// Font
 		DefaultFont.load();
 		
+		// Scenes
 		//SceneManager.add("Title", new TitleScene());
 		SceneManager.add("Game", new GameScene());
 		//SceneManager.add("Victory", new VictoryScene());
 		
+		// Input
 		InputManager.addInput("A", Keyboard.Q);
 		InputManager.addInput("B", Keyboard.S);
 		InputManager.addInput("C", Keyboard.A);
@@ -42,6 +45,5 @@ class Main extends Sprite
 		//snd_music = Assets.getSound("assets/music.mp3"); // flash doesn't like OOG :'(
 		//channel = snd_music.play();
 		//channel.addEventListener(Event.SOUND_COMPLETE, onMusicEnd);
-
 	}
 }
