@@ -1,4 +1,5 @@
 import flash.display.Sprite;
+import flash.ui.Keyboard;
 
 import hacksaw.DefaultFont;
 import hacksaw.DefaultTextField;
@@ -22,7 +23,16 @@ class Main extends Sprite
 		SceneManager.add("Game", new GameScene());
 		//SceneManager.add("Victory", new VictoryScene());
 		
-		InputManager.bink();
+		InputManager.addInput(Keyboard.Q);
+		InputManager.addInput(Keyboard.A);
+		InputManager.addInput(Keyboard.S);
+		InputManager.addInput(Keyboard.Z);
+		InputManager.addInput(Keyboard.J);
+		InputManager.addInput(Keyboard.L);
+		InputManager.addInput(Keyboard.UP);
+		InputManager.addInput(Keyboard.DOWN);
+		InputManager.addInput(Keyboard.LEFT);
+		InputManager.addInput(Keyboard.RIGHT);
 
 		// Sound
 		//SoundManager.loadSound("teleport_in");

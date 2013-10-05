@@ -2,30 +2,6 @@ package hacksaw;
 
 import flash.events.KeyboardEvent;
 
-class InputState
-{
-
-	public var pressed_previously(default, null) = false;
-	public var trigger(default, null) = 0;
-	
-	private var __pressed = false;
-	public var pressed(default, set) = false;
-	private function set_pressed(value : Bool) : Bool
-	{
-		pressed_previously = pressed;
-		pressed = value;
-		
-		if (pressed_previously && !pressed)
-			trigger = -1;
-		else if (pressed && !pressed_previously)
-			trigger = 1;
-		else
-			trigger = 0;
-			
-		return pressed;
-	}
-}
-
 class InputManager
 {
 	// ---------------------------------------------------------------------------
@@ -36,6 +12,10 @@ class InputManager
 
 	private function new()
 	{
+		// initialise empty set of input states
+		states = new Map<Int, InputState>();
+		
+		// register events
 		flash.Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, function(event : KeyboardEvent) return onKey(true, event));
 		flash.Lib.current.stage.addEventListener(KeyboardEvent.KEY_UP, function(event : KeyboardEvent) return onKey(true, event));
 	}
@@ -51,15 +31,15 @@ class InputManager
 
 	// shortcut static functions
 	
-	public static function bink()
+	public static function addInput(code : Int)
 	{
-		get();
+		get().states.set(code, new InputState());
 	}
 
-	/*public static function loadSound(name : String, _max_instances : Int = 3) : Void
+	public static function getState(code : Int) : InputState
 	{
-		get().__loadSound(name, _max_instances);
-	}*/
+		return get().states.get(code);
+	}
 	
 	// ---------------------------------------------------------------------------
 	// INPUT STATES
@@ -73,8 +53,9 @@ class InputManager
 	
 	private function onKey(pressed : Bool, event : KeyboardEvent)
 	{
-		//if (event.keyCode)
-			//;
+		var state = states.get(event.keyCode);
+		if (state != null)
+			state.pressed = pressed;
 	}
 	
 	// ---------------------------------------------------------------------------
