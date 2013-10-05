@@ -4,6 +4,7 @@ import hacksaw.DefaultFont;
 import hacksaw.DefaultTextField;
 import hacksaw.SoundManager;
 import hacksaw.SceneManager;
+import hacksaw.InputManager;
 
 class Main extends Sprite 
 {
@@ -20,6 +21,8 @@ class Main extends Sprite
 		//SceneManager.add("Title", new TitleScene());
 		SceneManager.add("Game", new GameScene());
 		//SceneManager.add("Victory", new VictoryScene());
+		
+		InputManager.bink();
 
 		// Sound
 		//SoundManager.loadSound("teleport_in");
