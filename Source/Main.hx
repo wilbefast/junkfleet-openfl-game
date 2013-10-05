@@ -23,16 +23,16 @@ class Main extends Sprite
 		SceneManager.add("Game", new GameScene());
 		//SceneManager.add("Victory", new VictoryScene());
 		
-		InputManager.addInput(Keyboard.Q);
-		InputManager.addInput(Keyboard.A);
-		InputManager.addInput(Keyboard.S);
-		InputManager.addInput(Keyboard.Z);
-		InputManager.addInput(Keyboard.J);
-		InputManager.addInput(Keyboard.L);
-		InputManager.addInput(Keyboard.UP);
-		InputManager.addInput(Keyboard.DOWN);
-		InputManager.addInput(Keyboard.LEFT);
-		InputManager.addInput(Keyboard.RIGHT);
+		InputManager.addInput("A", Keyboard.Q);
+		InputManager.addInput("B", Keyboard.S);
+		InputManager.addInput("C", Keyboard.A);
+		InputManager.addInput("D", Keyboard.Z);
+		InputManager.addInput("start", Keyboard.J);
+		InputManager.addInput("exit", Keyboard.L);
+		InputManager.addInput("up", Keyboard.UP);
+		InputManager.addInput("down", Keyboard.DOWN);
+		InputManager.addInput("left", Keyboard.LEFT);
+		InputManager.addInput("right", Keyboard.RIGHT);
 
 		// Sound
 		//SoundManager.loadSound("teleport_in");
