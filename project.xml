@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	
+	<meta title="Junk Fleet" package="com.wilbefast.junkfleet" version="1.0.0" company="wilbefast" />
+	<app main="Main" path="Export" file="JunkFleet" />
+	
+	<source path="Source" />
+	<source path="Source/hacksaw" />
+	
+	<haxelib name="openfl" />
+	
+	<assets path="Assets" rename="assets" exclude="openfl.svg" />
+	<icon path="Assets/openfl.svg" />
+
+	<window width="1024" height="1280" fullscreen="true" if="desktop" />
+	
+</project>
