@@ -62,8 +62,11 @@ class V2
 	public inline function normalise() : V2
 	{
 		var norm = getNorm();
-		x /= norm;
-		y /= norm;
+		if (norm != 0)
+		{
+			x /= norm;
+			y /= norm;
+		}
 		return this;
 	}
 

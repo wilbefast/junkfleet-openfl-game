@@ -12,9 +12,9 @@ class GameScene extends Scene
 	{
 		super();
 		
-		bink = new DefaultTextField("Hello GameScene!", 100, 100);
-		addChild(bink);
-		//addChild(new DefaultTextField("Hello GameScene!", 100, 100));
+		addChild(new DefaultTextField("Hello GameScene!", 100, 100));
+		
+		new Ship(100, 100, 32);
 	}
 		
 	// ---------------------------------------------------------------------------
@@ -23,8 +23,6 @@ class GameScene extends Scene
 	
 	public override function onFrameEnter(event : Event) : Void
 	{
-		if(InputManager.getState("C").trigger == 1)
-			trace("YABAAAAADAAAABAADOOOOOOOOOOOOOOOO!");
 	}
 	
 }

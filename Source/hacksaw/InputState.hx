@@ -3,7 +3,7 @@ import flash.events.Event;
 
 class InputState
 {
-	public var pressed_previously(default, null) = false;
+	private var pressed_previously = false;
 	
 	public var trigger(default, null) = 0;
 	private function recalculate_trigger()

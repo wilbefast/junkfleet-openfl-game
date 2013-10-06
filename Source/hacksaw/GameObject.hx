@@ -55,7 +55,8 @@ class GameObject extends Sprite
 
 	public function update(dt : Float) : Void
 	{
-		// override me !
+		x += speed.x * dt;
+		y += speed.y * dt;
 	}
 
 	// ---------------------------------------------------------------------------
