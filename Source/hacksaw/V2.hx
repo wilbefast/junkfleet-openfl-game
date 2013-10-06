@@ -79,4 +79,9 @@ class V2
 	{
 		return (Useful.sqr(x) + Useful.sqr(y));
 	}
+	
+	public inline function isNull() : Bool
+	{
+		return ((x == 0) && (y == 0));
+	}
 }

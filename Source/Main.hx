@@ -1,5 +1,8 @@
 import flash.display.Sprite;
 import flash.ui.Keyboard;
+import flash.Lib;
+import flash.events.Event;
+import flash.events.KeyboardEvent;
 
 import hacksaw.DefaultFont;
 import hacksaw.DefaultTextField;
@@ -26,16 +29,18 @@ class Main extends Sprite
 		//SceneManager.add("Victory", new VictoryScene());
 		
 		// Input
-		InputManager.addInput("A", Keyboard.Q);
-		InputManager.addInput("B", Keyboard.S);
-		InputManager.addInput("C", Keyboard.A);
-		InputManager.addInput("D", Keyboard.Z);
+		InputManager.addInput("frontLeft", Keyboard.Q);
+		InputManager.addInput("frontRight", Keyboard.S);
+		InputManager.addInput("backLeft", Keyboard.A);
+		InputManager.addInput("backRight", Keyboard.Z);
 		InputManager.addInput("start", Keyboard.J);
 		InputManager.addInput("exit", Keyboard.L);
 		InputManager.addInput("up", Keyboard.UP);
 		InputManager.addInput("down", Keyboard.DOWN);
 		InputManager.addInput("left", Keyboard.LEFT);
 		InputManager.addInput("right", Keyboard.RIGHT);
+		Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, 
+			function(event : KeyboardEvent) if(event.keyCode == Keyboard.ESCAPE) return Sys.exit(0));
 
 		// Sound
 		//SoundManager.loadSound("teleport_in");
