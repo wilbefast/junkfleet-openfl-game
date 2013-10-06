@@ -40,7 +40,7 @@ class Main extends Sprite
 		InputManager.addInput("left", Keyboard.LEFT);
 		InputManager.addInput("right", Keyboard.RIGHT);
 		Lib.current.stage.addEventListener(KeyboardEvent.KEY_DOWN, 
-			function(event : KeyboardEvent) if(event.keyCode == Keyboard.ESCAPE) return Sys.exit(0));
+			function(event : KeyboardEvent) if (event.keyCode == Keyboard.ESCAPE) return Sys.exit(0));
 
 		// Sound
 		//SoundManager.loadSound("teleport_in");

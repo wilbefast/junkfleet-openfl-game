@@ -6,7 +6,7 @@ class MotherShip extends Ship
 	{
 		super(__x, __y);
 		
-		radius = 32;
+		radius = 24;
 		friction = 0.4;
 		acceleration = 10;
 		

@@ -3,7 +3,6 @@ package ships;
 import hacksaw.GameObject;
 import hacksaw.LineGraphics;
 
-
 class Shield extends GameObject
 {
 	var strength = 1.0;

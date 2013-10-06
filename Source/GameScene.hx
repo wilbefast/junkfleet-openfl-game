@@ -35,8 +35,11 @@ class GameScene extends Scene
 	
 	public override function onFrameEnter(event : Event) : Void
 	{
+		// refresh list of controlled ships
 		for (control in shipControls)
 			control.ship.controlled = (InputManager.getState(control.buttonName).pressed);
+			
+		
 	}
 	
 }
