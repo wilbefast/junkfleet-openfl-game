@@ -1,20 +1,18 @@
 package ships;
-
 import hacksaw.GameObject;
 
-class PlasmaBall extends GameObject
+class EnemyShot extends GameObject
 {
 
 	public function new(__x : Float, __y : Float) 
 	{
-		super(__x, __y, 8);
+		super(__x, __y, 4);
 		
-		graphics.beginFill(0xFF00FF);
-			graphics.drawRect( -10, -5, 5, 10);
-			graphics.drawRect( 5, -5, 5, 10);
+		graphics.beginFill(0x00FF00);
+			graphics.drawCircle(0, 0, radius);
 		graphics.endFill();
 		
-		speed.y = -500;
+		speed.y = 500;
 	}
 	
 	// ---------------------------------------------------------------------------
@@ -26,8 +24,7 @@ class PlasmaBall extends GameObject
 	{
 		super.update(dt);
 		
-		if (y < -radius*2)
+		if (y > stage.stageHeight + radius)
 			purge = true;
 	}
-	
 }

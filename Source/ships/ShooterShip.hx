@@ -15,15 +15,18 @@ class ShooterShip extends Ship
 		graphics.beginFill(0xFF0000);
 		graphics.drawCircle(0, 0, radius);
 		
-		Actuate.timer(0.2).onComplete(openFire);
-		
-		
+		Actuate.timer(FIRE_PERIOD).onComplete(openFire);
 	}
+	
+	private static inline var FIRE_PERIOD = 0.15;
 	
 	private function openFire()
 	{
+		if (purge)
+			return;
+		
 		new PlasmaBall(x, y - radius * 2);
-		Actuate.timer(0.1).onComplete(openFire);
+		Actuate.timer(FIRE_PERIOD).onComplete(openFire);
 	}
 	
 }

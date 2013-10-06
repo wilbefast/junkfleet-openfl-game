@@ -14,22 +14,7 @@ import hacksaw.Time;
 
 class Ship extends GameObject
 {
-	private var selection_reticule : DisplayObject;
-	public var controlled(default, set) = true;
-	private function set_controlled(value : Bool) : Bool
-	{
-		controlled = value;
-		
-		var visibility = (controlled ? 1 : 0);	
-		Actuate.tween(selection_reticule, 0.5, { alpha : visibility, scaleX : visibility, scaleY : visibility }, true);
-		
-		return controlled;
-	}
-	
-	
-	public var acceleration = 1.0;
-	public var friction = 0.0;
-	
+
 	public function new(__x : Float, __y : Float) 
 	{
 		super(__x, __y);
@@ -46,7 +31,7 @@ class Ship extends GameObject
 
 	public override function onCollisionWith(other : GameObject) : Void
 	{
-		// repulse
+		// repulse away from other ships
 		if(Std.is(other, Ship))
 		{
 			// repulsion vector
@@ -54,12 +39,53 @@ class Ship extends GameObject
 			x += (radius + other.radius)/repulse.x * 10 * Time.getDelta();
 			y +=(radius + other.radius)/repulse.y * 10 * Time.getDelta();
 		}
+		else if (Std.is(other, PlasmaBall))
+		{
+			other.purge = true;
+			purge = true;
+		}
 	}
+	
+	
+	// ---------------------------------------------------------------------------
+	// SELECTION AND CONTROL
+	// ---------------------------------------------------------------------------
+	
+	private var selection_reticule : DisplayObject;
+	public var controlled(default, set) = true;
+	private function set_controlled(value : Bool) : Bool
+	{
+		controlled = value;
+		
+		var visibility = (controlled ? 1 : 0);	
+		Actuate.tween(selection_reticule, 0.5, { alpha : visibility, scaleX : visibility, scaleY : visibility }, true);
+		
+		return controlled;
+	}
+	
+	
+	// ---------------------------------------------------------------------------
+	// SHIP DAMAGE
+	// ---------------------------------------------------------------------------
+	
+	private var damage(default, set) = 0.0;
+	private function set_damage(value : Float) : Float
+	{
+		damage = value;
+		if (damage >= 1)
+			this.purge = true;
+		
+		return damage;
+	}
+	
 	
 	// ---------------------------------------------------------------------------
 	// UPDATE
 	// ---------------------------------------------------------------------------
 
+	public var acceleration = 1.0;
+	public var friction = 0.0;
+	
 	public override function update(dt : Float) : Void
 	{
 
@@ -101,27 +127,30 @@ class Ship extends GameObject
 			
 			
 		// Borders ----------------------------------------------------------------
-		if (x + speed.x*dt + radius > stage.stageWidth)
+		if (controlled)
 		{
-			x = stage.stageWidth - radius;
-			speed.x = 0;
-		}
-		else if (x + speed.x*dt - radius < 0)
-		{
-			x = radius;
-			speed.x = 0;
-		}
-		
-		
-		if (y + speed.y*dt + radius > stage.stageHeight)
-		{
-			y = stage.stageHeight - radius;
-			speed.y = 0;
-		}
-		else if (y + speed.y*dt - radius < 0)
-		{
-			y = radius;
-			speed.y = 0;
+			if (x + speed.x*dt + radius > stage.stageWidth)
+			{
+				x = stage.stageWidth - radius;
+				speed.x = 0;
+			}
+			else if (x + speed.x*dt - radius < 0)
+			{
+				x = radius;
+				speed.x = 0;
+			}
+			
+			
+			if (y + speed.y*dt + radius > stage.stageHeight)
+			{
+				y = stage.stageHeight - radius;
+				speed.y = 0;
+			}
+			else if (y + speed.y*dt - radius < 0)
+			{
+				y = radius;
+				speed.y = 0;
+			}
 		}
 		
 		// Apply speed ------------------------------------------------------------
